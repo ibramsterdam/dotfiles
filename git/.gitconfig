@@ -1,0 +1,9 @@
+[user]
+	email = ibramsterdam@hotmail.com
+	name = Bram
+
+[init]
+    defaultBranch = main
+
+[push]
+	autoSetupRemote = true
