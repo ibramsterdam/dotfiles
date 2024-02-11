@@ -54,3 +54,5 @@ alias python="python3"
 alias vi="nvim"
 alias v="nvim ."
 alias stage="cd ~/Tltd/bordfolio"
+alias t="tmux"
+alias e='exit'
