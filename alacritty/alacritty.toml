@@ -1,0 +1,20 @@
+# Windows file that needs to be stored in C:\Users\bram_\AppData\Roaming\alacritty
+# themes from https://github.com/alacritty/alacritty-theme
+
+import = ["/Users/mischa/.config/alacritty/themes/themes/gruvbox_dark.toml"]
+
+[font]
+size = 18
+
+[font.normal]
+family = "UbuntuMono Nerd Font"
+
+[window]
+decorations = "none"
+
+[window.padding]
+x = 7
+
+[shell]
+program = "C:\\Windows\\System32\\wsl.exe"
+args = ["--cd", "~"]
