@@ -1,4 +1,3 @@
-# If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
 export EDITOR="code"
@@ -6,6 +5,7 @@ eval "$(rbenv init -)"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export XDG_CONFIG_HOME=$HOME/.config
 
 ############################
 ###         THEME        ###
@@ -45,14 +45,16 @@ export PATH="$PATH:$BREW_HOME"
 
 ############################
 ###        Aliases       ###
-#############################
+############################
 alias dive="docker exec -it -w /oerwrite oerwrite-app-1 zsh"
 alias oer="cd ~/Docfield/oerwrite"
 alias la='ls -A'
 alias vim="nvim"
 alias python="python3"
 alias vi="nvim"
-alias v="nvim ."
+alias v="nvim"
 alias stage="cd ~/Tltd/bordfolio"
 alias t="tmux"
 alias e='exit'
+export PATH="/home/linuxbrew/.linuxbrew/opt/mysql@8.0/bin:$PATH"
+export PATH="/home/linuxbrew/.linuxbrew/opt/imagemagick@6/bin:$PATH"
