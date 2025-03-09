@@ -49,4 +49,4 @@ end
 vim.api.nvim_create_user_command("Floaterminal", toggle_terminal, {})
 
 -- Keymaps
-vim.keymap.set({ "n", "t" }, "<space>tt", toggle_terminal)
+vim.keymap.set("n", "<space>tt", toggle_terminal)
