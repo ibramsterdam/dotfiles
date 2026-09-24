@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# Bootstrap this config on a fresh machine (macOS or Ubuntu): verify
+# dependencies, then restore plugins to the versions pinned in lazy-lock.json.
+set -euo pipefail
+
+MIN_NVIM="0.12.0"
+
+missing=0
+for cmd in nvim git rg make cc curl tar tree-sitter; do
+  if ! command -v "$cmd" >/dev/null; then
+    echo "Missing dependency: $cmd" >&2
+    missing=1
+  fi
+done
+
+if command -v nvim >/dev/null; then
+  nvim_version=$(nvim --version | head -1 | sed 's/^NVIM v//')
+  if [ "$(printf '%s\n' "$MIN_NVIM" "$nvim_version" | sort -V | head -1)" != "$MIN_NVIM" ]; then
+    echo "Neovim $nvim_version is too old (need >= $MIN_NVIM)" >&2
+    missing=1
+  fi
+fi
+
+if [ "$missing" -eq 1 ]; then
+  echo >&2
+  echo "Install the missing tools:" >&2
+  echo "  macOS:  brew install neovim ripgrep tree-sitter" >&2
+  echo "  Ubuntu: sudo snap install nvim --classic   # apt's neovim is too old" >&2
+  echo "          sudo apt install ripgrep build-essential curl" >&2
+  echo "          npm install -g tree-sitter-cli     # or: cargo install tree-sitter-cli" >&2
+  exit 1
+fi
+
+echo "== Restoring plugins to lazy-lock.json versions =="
+nvim --headless "+Lazy! restore" +qa
+
+echo "== Installing treesitter parsers =="
+nvim --headless "+lua require('nvim-treesitter').install(require('config.parsers')):wait(600000)" +qa
+
+echo
+echo "Setup complete. Run bin/health to verify."

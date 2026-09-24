@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Update plugins (lazy.nvim) and treesitter parsers.
+set -euo pipefail
+
+echo "== Updating plugins (lazy.nvim) =="
+nvim --headless "+Lazy! update" +qa
+
+echo "== Updating treesitter parsers =="
+nvim --headless "+lua require('nvim-treesitter').update():wait(600000)" +qa
+
+echo
+echo "Done. Review lazy-lock.json changes with: git -C \"$(dirname "$0")/..\" diff lazy-lock.json"

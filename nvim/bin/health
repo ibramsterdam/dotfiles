@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Open neovim's health report (plugin + provider diagnostics).
+set -euo pipefail
+exec nvim "+checkhealth"
