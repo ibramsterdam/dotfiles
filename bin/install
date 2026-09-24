@@ -41,6 +41,22 @@ for skill_dir in "$DOTFILES_DIR"/claude/skills/*/; do
   link "$DOTFILES_DIR/claude/skills/$name" "$HOME/.claude/skills/$name"
 done
 
+case "$(uname -s)" in
+  Darwin) FONT_DIR="$HOME/Library/Fonts" ;;
+  Linux)  FONT_DIR="$HOME/.local/share/fonts" ;;
+esac
+
+for family_dir in "$DOTFILES_DIR"/fonts/*/; do
+  [ -d "$family_dir" ] || continue
+  for font_file in "$family_dir"*; do
+    link "$font_file" "$FONT_DIR/$(basename "$font_file")"
+  done
+done
+
+if [ "$(uname -s)" = "Linux" ] && command -v fc-cache >/dev/null; then
+  fc-cache -f "$FONT_DIR"
+fi
+
 echo
 echo "== Bootstrapping nvim =="
 "$DOTFILES_DIR/nvim/bin/setup" || echo "nvim/bin/setup failed. Install the missing dependencies it listed, then rerun it directly."

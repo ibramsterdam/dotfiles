@@ -24,6 +24,7 @@ git/ignore                       -> ~/.config/git/ignore
 alacritty/alacritty.toml         -> ~/.config/alacritty/alacritty.toml
 nvim/                            -> ~/.config/nvim
 claude/skills/<name>/            -> ~/.claude/skills/<name>   (one symlink per skill)
+fonts/<family>/*                 -> ~/Library/Fonts or ~/.local/share/fonts
 ```
 
 nvim config lives directly in this repo (the old standalone `ibramsterdam/nvim`
@@ -49,3 +50,11 @@ so not a skill). It is symlinked to `~/.claude/CLAUDE.md`.
 `bin/install` symlinks each subdirectory of `claude/skills/` individually into
 `~/.claude/skills/`, never the whole `skills/` folder, since that directory
 also holds a `synced/` subfolder managed by Claude Code itself.
+
+## Fonts
+
+`fonts/` vendors the actual font files a fresh machine needs (currently just
+`UbuntuMono Nerd Font`, referenced by `alacritty.toml`), so setup does not
+depend on Homebrew casks or a GitHub download at install time. `bin/install`
+symlinks each file into `~/Library/Fonts` (macOS) or `~/.local/share/fonts`
+(Linux, followed by `fc-cache`).
