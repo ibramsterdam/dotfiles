@@ -19,6 +19,7 @@ restore plugins.
 zsh/.zshrc                       -> ~/.zshrc
 tmux/.tmux.conf                  -> ~/.tmux.conf
 git/.gitconfig                   -> ~/.gitconfig
+git/ignore                       -> ~/.config/git/ignore
 alacritty/alacritty.toml         -> ~/.config/alacritty/alacritty.toml
 nvim/                            -> ~/.config/nvim
 ```
