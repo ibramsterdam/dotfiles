@@ -5,7 +5,7 @@ Personal config for zsh, tmux, git, Alacritty, and nvim.
 ## Quickstart (new machine)
 
 ```bash
-git clone --recurse-submodules git@github.com:ibramsterdam/dotfiles.git ~/Developer/dotfiles
+git clone git@github.com:ibramsterdam/dotfiles.git ~/Developer/dotfiles
 ~/Developer/dotfiles/bin/install
 ```
 
@@ -20,12 +20,10 @@ zsh/.zshrc                       -> ~/.zshrc
 tmux/.tmux.conf                  -> ~/.tmux.conf
 git/.gitconfig                   -> ~/.gitconfig
 alacritty/alacritty.toml         -> ~/.config/alacritty/alacritty.toml
-nvim/                            -> ~/.config/nvim   (submodule)
+nvim/                            -> ~/.config/nvim
 ```
 
-nvim is tracked as a git submodule pointing at
-[ibramsterdam/nvim](https://github.com/ibramsterdam/nvim), which has its own
-history and `bin/setup` / `bin/update` / `bin/health` scripts. Edit it in
-place at `~/.config/nvim` (or `nvim/` here — same files) and push/pull that
-repo directly; bump the pinned commit in this repo with
-`git submodule update --remote nvim`.
+nvim config lives directly in this repo (the old standalone `ibramsterdam/nvim`
+repo is archived). It keeps its own `bin/setup` / `bin/update` / `bin/health`
+scripts — edit it in place at `~/.config/nvim` (or `nvim/` here — same files
+via symlink) and commit through the main dotfiles repo like everything else.
