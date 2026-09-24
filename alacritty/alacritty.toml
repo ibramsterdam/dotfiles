@@ -1,13 +1,10 @@
-# Windows file that needs to be stored in C:\Users\bram_\AppData\Roaming\alacritty
-
 [env]
 TERM = "xterm-256color"
 
 [font]
 size = 18
+normal = { family = "UbuntuMono Nerd Font" }
 
-[font.normal]
-family = "UbuntuMono Nerd Font"
 
 [window]
 decorations = "none"
@@ -16,9 +13,6 @@ decorations = "none"
 x = 7
 y = 7
 
-[shell]
-program = "C:\\Windows\\System32\\wsl.exe"
-args = ["--cd", "~"]
 
+[terminal]
 osc52 = "CopyPaste"
-
