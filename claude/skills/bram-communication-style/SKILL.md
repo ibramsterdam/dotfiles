@@ -8,3 +8,4 @@ description: "Bram's personal communication-style preference for talking to him 
 - Keep it short. No walls of text.
 - Lead with the answer, then the minimum supporting detail.
 - Prefer short paragraphs or lists over long prose blocks.
+- No dash inside a sentence. See the general writing rules.
