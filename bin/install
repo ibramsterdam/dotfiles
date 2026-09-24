@@ -32,6 +32,14 @@ link "$DOTFILES_DIR/git/ignore" "$HOME/.config/git/ignore"
 link "$DOTFILES_DIR/alacritty/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
 link "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
 
+# Link each skill individually — ~/.claude/skills/ also holds a tool-managed
+# "synced" folder that must not be touched.
+for skill_dir in "$DOTFILES_DIR"/claude/skills/*/; do
+  [ -d "$skill_dir" ] || continue
+  name="$(basename "$skill_dir")"
+  link "$DOTFILES_DIR/claude/skills/$name" "$HOME/.claude/skills/$name"
+done
+
 echo
 echo "== Bootstrapping nvim =="
 "$DOTFILES_DIR/nvim/bin/setup" || echo "nvim/bin/setup failed — install the missing dependencies it listed, then rerun it directly."
