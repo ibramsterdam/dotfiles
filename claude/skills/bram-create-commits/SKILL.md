@@ -8,7 +8,7 @@ description: "Bram's personal commit-message convention. Use whenever writing a 
 - One line: imperative mood, sentence case (e.g. "Drop the keys page and revoke the pool key").
 - No body / description under the title.
 - No conventional-commit prefixes (`feat:`, `fix:`, `chore:`, etc.).
-- Trailers are fine (e.g. `Co-Authored-By: ...`) — they don't count as a body.
+- No trailers. See the general writing rules for the attribution ban.
 
 This matches the existing style across Bram's repos (tornmanager, malaguena, dotfiles).
 
