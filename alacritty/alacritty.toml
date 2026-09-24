@@ -18,5 +18,5 @@ y = 7
 osc52 = "CopyPaste"
 
 [shell]
-program = "/bin/zsh"
+program = "zsh"
 args = ["-l", "-c", "exec tmux new-session -A -s main"]
