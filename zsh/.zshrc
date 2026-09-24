@@ -34,9 +34,13 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting web-search)
 # ZSH_CUSTOM=/path/to/new-custom-folder
 source $ZSH/oh-my-zsh.sh
 
-export BREW_HOME="/home/linuxbrew/.linuxbrew/bin"
-export PATH="$PATH:$BREW_HOME"
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+############################
+###     OS-specific      ###
+############################
+case "$(uname -s)" in
+  Darwin) source "$HOME/.config/zsh/os/darwin.zsh" ;;
+  Linux)  source "$HOME/.config/zsh/os/linux.zsh" ;;
+esac
 
 ############################
 ###        Aliases       ###
@@ -52,18 +56,6 @@ alias RET="RAILS_ENV=test"
 alias rc="rails console"
 alias lzd='lazydocker'
 
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
-export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
-export PATH="/opt/homebrew/Cellar/poppler/24.04.0_1/bin:$PATH"
-
-# pnpm
-export PNPM_HOME="/Users/bram/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
 export PATH="$HOME/.local/bin:$PATH"
 
 # Clear any stale mise activation state inherited across `exec zsh` / subshells,

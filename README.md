@@ -1,6 +1,6 @@
 # dotfiles
 
-Personal config for zsh, tmux, git, Alacritty, and nvim.
+Personal config for zsh, tmux, git, Alacritty, and nvim. Supports macOS and Linux.
 
 ## Quickstart (new machine)
 
@@ -17,6 +17,7 @@ restore plugins.
 
 ```
 zsh/.zshrc                       -> ~/.zshrc
+zsh/os/                          -> ~/.config/zsh/os   (darwin.zsh / linux.zsh, picked by uname)
 tmux/.tmux.conf                  -> ~/.tmux.conf
 git/.gitconfig                   -> ~/.gitconfig
 git/ignore                       -> ~/.config/git/ignore
