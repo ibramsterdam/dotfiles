@@ -1,5 +1,8 @@
+[core]
+	editor = nvim
+
 [user]
-	email = ibramsterdam@hotmail.com
+	email = bramjanssen@hey.com
 	name = Bram
 
 [init]
