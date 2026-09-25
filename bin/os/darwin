@@ -16,10 +16,12 @@ fi
 brew bundle --file="$DOTFILES_DIR/Brewfile"
 
 if ! command -v claude >/dev/null; then
+  echo "== Installing Claude Code CLI =="
   curl -fsSL https://claude.ai/install.sh | bash
 fi
 
 if [ ! -d /Applications/Alacritty.app ]; then
+  echo "== Installing Alacritty =="
   ALACRITTY_TMP="$(mktemp -d)"
   ALACRITTY_DMG_URL="$(curl -fsSL https://api.github.com/repos/alacritty/alacritty/releases/latest | grep -o 'https://[^"]*\.dmg')"
   curl -fsSL "$ALACRITTY_DMG_URL" -o "$ALACRITTY_TMP/alacritty.dmg"
