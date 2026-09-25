@@ -14,3 +14,18 @@ elif [ -d /usr/local/bin ]; then
 fi
 
 brew bundle --file="$DOTFILES_DIR/Brewfile"
+
+if ! command -v claude >/dev/null; then
+  curl -fsSL https://claude.ai/install.sh | bash
+fi
+
+if [ ! -d /Applications/Alacritty.app ]; then
+  ALACRITTY_TMP="$(mktemp -d)"
+  ALACRITTY_DMG_URL="$(curl -fsSL https://api.github.com/repos/alacritty/alacritty/releases/latest | grep -o 'https://[^"]*\.dmg')"
+  curl -fsSL "$ALACRITTY_DMG_URL" -o "$ALACRITTY_TMP/alacritty.dmg"
+  ALACRITTY_MOUNT="$(hdiutil attach "$ALACRITTY_TMP/alacritty.dmg" -nobrowse -noverify | grep '/Volumes/' | sed -E 's/^.*(\/Volumes\/.*)$/\1/')"
+  cp -R "$ALACRITTY_MOUNT/Alacritty.app" /Applications/
+  hdiutil detach "$ALACRITTY_MOUNT" -quiet
+  rm -rf "$ALACRITTY_TMP"
+  xattr -dr com.apple.quarantine /Applications/Alacritty.app
+fi

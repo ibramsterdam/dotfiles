@@ -10,5 +10,3 @@ brew "postgresql@16"
 brew "poppler"
 brew "pnpm"
 brew "lazydocker"
-
-cask "claude"

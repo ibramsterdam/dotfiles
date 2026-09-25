@@ -63,19 +63,22 @@ symlinks each file into `~/Library/Fonts` (macOS) or `~/.local/share/fonts`
 ## Packages
 
 `bin/os/darwin` and `bin/os/linux` each bootstrap Homebrew (or Linuxbrew) if
-missing, then run `brew bundle` against `Brewfile` (macOS, formulae and casks)
-or `Brewfile.linux` (formulae only, no casks since Homebrew casks are a macOS
-concept). `bin/install` dispatches to the right one via `uname`, same pattern
-as `zsh/os`.
+missing, then run `brew bundle` against `Brewfile` (macOS) or `Brewfile.linux`
+(Linux, no casks, since Homebrew casks are a macOS concept). `bin/install`
+dispatches to the right one via `uname`, same pattern as `zsh/os`. Neither
+file uses a cask: the Claude Code CLI (not the Desktop GUI app) and Alacritty
+are installed separately, both on macOS only for now.
 
-Claude Code (Desktop) is installed as a cask on macOS. Alacritty is not:
-Homebrew disabled the `alacritty` cask on 2026-09-01 because it fails Apple's
-Gatekeeper check. Install it manually instead, from
-https://github.com/alacritty/alacritty/releases, then clear the quarantine
-flag if macOS blocks it on first launch:
+**Claude Code CLI**: `bin/os/darwin` installs it via the official native
+installer (`curl -fsSL https://claude.ai/install.sh | bash`) if `claude` is
+not already on `PATH`.
 
-```bash
-xattr -dr com.apple.quarantine /Applications/Alacritty.app
-```
+**Alacritty**: Homebrew disabled the `alacritty` cask on 2026-09-01 because it
+fails Apple's Gatekeeper check, so `bin/os/darwin` instead downloads the
+latest `.dmg` directly from the GitHub releases API, mounts it, copies
+`Alacritty.app` into `/Applications`, and clears the quarantine flag so
+Gatekeeper does not block it on first launch. Only runs if
+`/Applications/Alacritty.app` does not already exist.
 
-On Linux, both need installing through your distro's own package manager.
+On Linux, both need installing through your distro's own package manager for
+now.
