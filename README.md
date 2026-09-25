@@ -9,9 +9,10 @@ git clone git@github.com:ibramsterdam/dotfiles.git ~/Developer/dotfiles
 ~/Developer/dotfiles/bin/install
 ```
 
-`bin/install` symlinks each config into place (backing up anything already
-there under `~/.dotfiles-backup/`) and then runs nvim's own `bin/setup` to
-restore plugins.
+`bin/install` bootstraps Homebrew and installs every package this setup needs
+(`bin/os/darwin` or `bin/os/linux`, picked by `uname`), symlinks each config
+into place (backing up anything already there under `~/.dotfiles-backup/`),
+and then runs nvim's own `bin/setup` to restore plugins.
 
 ## Layout
 
@@ -58,3 +59,23 @@ also holds a `synced/` subfolder managed by Claude Code itself.
 depend on Homebrew casks or a GitHub download at install time. `bin/install`
 symlinks each file into `~/Library/Fonts` (macOS) or `~/.local/share/fonts`
 (Linux, followed by `fc-cache`).
+
+## Packages
+
+`bin/os/darwin` and `bin/os/linux` each bootstrap Homebrew (or Linuxbrew) if
+missing, then run `brew bundle` against `Brewfile` (macOS, formulae and casks)
+or `Brewfile.linux` (formulae only, no casks since Homebrew casks are a macOS
+concept). `bin/install` dispatches to the right one via `uname`, same pattern
+as `zsh/os`.
+
+Claude Code (Desktop) is installed as a cask on macOS. Alacritty is not:
+Homebrew disabled the `alacritty` cask on 2026-09-01 because it fails Apple's
+Gatekeeper check. Install it manually instead, from
+https://github.com/alacritty/alacritty/releases, then clear the quarantine
+flag if macOS blocks it on first launch:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Alacritty.app
+```
+
+On Linux, both need installing through your distro's own package manager.
