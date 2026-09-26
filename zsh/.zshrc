@@ -23,9 +23,10 @@ alias v="nvim"
 alias t="tmux"
 alias e='exit'
 alias python="python3"
-alias RET="RAILS_ENV=test"
-alias rc="rails console"
 alias lzd='lazydocker'
 alias dbs='docker compose -f ~/Developer/Repositories/dotfiles/docker/compose.yml'
+
+alias rc="rails console"
+alias RET="RAILS_ENV=test"
 
 eval "$(mise activate zsh)"
