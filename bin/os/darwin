@@ -7,18 +7,10 @@ if ! command -v brew >/dev/null; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-if [ -d /opt/homebrew/bin ]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-elif [ -d /usr/local/bin ]; then
-  eval "$(/usr/local/bin/brew shellenv)"
-fi
+# shellcheck source=../../zsh/.zprofile
+. "$DOTFILES_DIR/zsh/.zprofile"
 
 brew bundle --file="$DOTFILES_DIR/Brewfile"
-
-if ! command -v claude >/dev/null; then
-  echo "== Installing Claude Code CLI =="
-  curl -fsSL https://claude.ai/install.sh | bash
-fi
 
 if [ ! -d /Applications/Alacritty.app ]; then
   echo "== Installing Alacritty =="
@@ -30,8 +22,4 @@ if [ ! -d /Applications/Alacritty.app ]; then
   hdiutil detach "$ALACRITTY_MOUNT" -quiet
   rm -rf "$ALACRITTY_TMP"
   xattr -dr com.apple.quarantine /Applications/Alacritty.app
-fi
-
-if ! command -v docker >/dev/null; then
-  echo "Docker is missing. Install Docker Desktop or OrbStack, then run: dbs up -d"
 fi
