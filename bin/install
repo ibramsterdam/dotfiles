@@ -88,5 +88,11 @@ echo "== Bootstrapping nvim =="
 export PATH="$HOME/.local/share/mise/shims:$HOME/.local/bin:$PATH"
 "$DOTFILES_DIR/nvim/bin/setup" || echo "nvim/bin/setup failed. Install the missing dependencies it listed, then rerun it directly."
 
+if command -v docker >/dev/null && docker info >/dev/null 2>&1; then
+  echo
+  echo "== Starting my_db and my_redis =="
+  docker compose -f "$DOTFILES_DIR/docker/compose.yml" up -d
+fi
+
 echo
 echo "Done."
