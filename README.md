@@ -13,8 +13,8 @@ Files that already exist are moved to `~/.dotfiles-backup/<timestamp>/` before t
 
 ## What gets installed
 
-1. Packages. macOS uses Homebrew and `Brewfile`. Ubuntu uses apt and snap, see `bin/os/linux`.
-2. node, pnpm, yarn and the tree-sitter CLI through mise
+1. Packages. macOS uses Homebrew and `Brewfile`. Ubuntu uses apt and snap, see `bin/os/ubuntu`.
+2. node, pnpm, yarn, the tree-sitter CLI, stylua and shellcheck through mise
 3. Claude Code CLI
 4. Alacritty. Ubuntu gets it from apt, macOS from the GitHub release.
 5. oh-my-zsh with the autosuggestions and syntax-highlighting plugins
@@ -35,4 +35,13 @@ On macOS, Alacritty needs a quarantine flag cleared on first launch, since its H
 
 ```bash
 xattr -dr com.apple.quarantine /Applications/Alacritty.app
+```
+
+## Checks
+
+CI runs shellcheck on the scripts and stylua on the nvim config. Run them locally with:
+
+```bash
+shellcheck -S warning bin/install bin/os/* nvim/bin/*
+stylua --check nvim
 ```
