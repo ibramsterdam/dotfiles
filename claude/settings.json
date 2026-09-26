@@ -1,0 +1,5 @@
+{
+  "model": "fable[1m]",
+  "tui": "fullscreen",
+  "skipAutoPermissionPrompt": true
+}
