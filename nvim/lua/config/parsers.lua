@@ -1,10 +1,9 @@
--- Treesitter parsers to install; used by the nvim-treesitter config and bin/setup
 return {
   "bash",
   "c",
   "csv",
   "diff",
-  "embedded_template", -- erb
+  "embedded_template",
   "gitcommit",
   "html",
   "ini",
