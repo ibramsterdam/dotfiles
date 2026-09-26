@@ -27,7 +27,7 @@ if [ "$missing" -eq 1 ]; then
   echo "  macOS:  brew install neovim ripgrep tree-sitter" >&2
   echo "  Ubuntu: sudo snap install nvim --classic   # apt's neovim is too old" >&2
   echo "          sudo apt install ripgrep build-essential curl" >&2
-  echo "          npm install -g tree-sitter-cli     # or: cargo install tree-sitter-cli" >&2
+  echo "          mise use --global npm:tree-sitter-cli" >&2
   exit 1
 fi
 
