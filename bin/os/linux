@@ -1,11 +1,54 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+APT_PACKAGES=(
+  git
+  zsh
+  tmux
+  ripgrep
+  gh
+  alacritty
+  curl
+  fontconfig
+  build-essential
+  libpq-dev
+  postgresql-client
+  poppler-utils
+  libssl-dev
+  libyaml-dev
+  libffi-dev
+  libreadline-dev
+  zlib1g-dev
+)
 
-if ! command -v brew >/dev/null; then
-  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+missing=()
+for pkg in "${APT_PACKAGES[@]}"; do
+  dpkg -s "$pkg" >/dev/null 2>&1 || missing+=("$pkg")
+done
+
+if [ "${#missing[@]}" -gt 0 ]; then
+  echo "== Installing apt packages: ${missing[*]} =="
+  sudo apt-get update
+  sudo apt-get install -y "${missing[@]}"
 fi
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-brew bundle --file="$DOTFILES_DIR/Brewfile.linux"
+if ! command -v nvim >/dev/null; then
+  echo "== Installing Neovim =="
+  sudo snap install nvim --classic
+fi
+
+if [ ! -x "$HOME/.local/bin/mise" ] && ! command -v mise >/dev/null; then
+  echo "== Installing mise =="
+  curl -fsSL https://mise.run | sh
+fi
+export PATH="$HOME/.local/bin:$PATH"
+
+if ! command -v claude >/dev/null; then
+  echo "== Installing Claude Code CLI =="
+  curl -fsSL https://claude.ai/install.sh | bash
+fi
+
+if ! command -v lazydocker >/dev/null; then
+  echo "== Installing lazydocker =="
+  curl -fsSL https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | DIR="$HOME/.local/bin" bash
+fi

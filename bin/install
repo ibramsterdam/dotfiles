@@ -30,6 +30,11 @@ case "$(uname -s)" in
 esac
 echo
 
+echo "== Installing node, pnpm, yarn and tree-sitter through mise =="
+export PATH="$HOME/.local/bin:$PATH"
+mise use --global node@lts npm:pnpm npm:yarn npm:tree-sitter-cli
+echo
+
 echo "== Setting up oh-my-zsh =="
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   RUNZSH=no CHSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -80,6 +85,7 @@ fi
 
 echo
 echo "== Bootstrapping nvim =="
+export PATH="$HOME/.local/share/mise/shims:$HOME/.local/bin:$PATH"
 "$DOTFILES_DIR/nvim/bin/setup" || echo "nvim/bin/setup failed. Install the missing dependencies it listed, then rerun it directly."
 
 echo
