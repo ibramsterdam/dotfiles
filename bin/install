@@ -30,6 +30,18 @@ case "$(uname -s)" in
 esac
 echo
 
+echo "== Setting up oh-my-zsh =="
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  RUNZSH=no CHSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+for plugin in zsh-autosuggestions zsh-syntax-highlighting; do
+  if [ ! -d "$HOME/.oh-my-zsh/plugins/$plugin" ] && [ ! -d "$ZSH_CUSTOM/plugins/$plugin" ]; then
+    git clone --depth 1 "https://github.com/zsh-users/$plugin" "$ZSH_CUSTOM/plugins/$plugin"
+  fi
+done
+echo
+
 echo "== Linking dotfiles =="
 link "$DOTFILES_DIR/zsh/.zprofile" "$HOME/.zprofile"
 link "$DOTFILES_DIR/zsh/.zshrc" "$HOME/.zshrc"
