@@ -5,21 +5,24 @@ Personal config for zsh, tmux, git, Alacritty, nvim, and Claude Code.
 ## Quickstart
 
 ```bash
-git clone git@github.com:ibramsterdam/dotfiles.git ~/Developer/dotfiles
-~/Developer/dotfiles/bin/install
+git clone git@github.com:ibramsterdam/dotfiles.git ~/Developer/Repositories/dotfiles
+~/Developer/Repositories/dotfiles/bin/install
 ```
+
+Files that already exist are moved to `~/.dotfiles-backup/<timestamp>/` before they get replaced.
 
 ## What gets installed
 
-1. Homebrew, or Linuxbrew on Linux
-2. Packages from `Brewfile` or `Brewfile.linux`: neovim, tmux, ripgrep, tree-sitter, mise, ruby-build, gh, libpq, postgresql@16, poppler, pnpm, lazydocker
+1. Packages. macOS uses Homebrew and `Brewfile`. Ubuntu uses apt and snap, see `bin/os/linux`.
+2. node, pnpm, yarn and the tree-sitter CLI through mise
 3. Claude Code CLI
-4. Alacritty, macOS only for now
-5. UbuntuMono Nerd Font
-6. All the config files, symlinked into place
-7. nvim plugins
+4. Alacritty. Ubuntu gets it from apt, macOS from the GitHub release.
+5. oh-my-zsh with the autosuggestions and syntax-highlighting plugins
+6. CaskaydiaMono and UbuntuMono Nerd Fonts
+7. All the config files, symlinked into place
+8. nvim plugins
 
-Alacritty needs a quarantine flag cleared on first launch, since its Homebrew cask is disabled:
+On macOS, Alacritty needs a quarantine flag cleared on first launch, since its Homebrew cask is disabled:
 
 ```bash
 xattr -dr com.apple.quarantine /Applications/Alacritty.app
