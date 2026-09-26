@@ -1,0 +1,30 @@
+name: dotfiles
+
+services:
+  my_db:
+    image: postgres:16.8
+    container_name: my_db
+    restart: unless-stopped
+    command: -c max_locks_per_transaction=256
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - my_db_data:/var/lib/postgresql/data
+
+  my_redis:
+    image: redis:8
+    container_name: my_redis
+    restart: unless-stopped
+    command: redis-server --databases 64
+    ports:
+      - "6379:6379"
+    volumes:
+      - my_redis_data:/data
+
+volumes:
+  my_db_data:
+  my_redis_data:
