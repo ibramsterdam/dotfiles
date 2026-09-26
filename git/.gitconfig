@@ -5,8 +5,17 @@
 	email = bramjanssen@hey.com
 	name = Bram
 
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+
 [init]
-    defaultBranch = main
+	defaultBranch = main
+
+[pull]
+	rebase = true
 
 [push]
 	autoSetupRemote = true
