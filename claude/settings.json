@@ -1,5 +1,5 @@
 {
-  "model": "fable[1m]",
+  "model": "opus",
   "tui": "fullscreen",
   "skipAutoPermissionPrompt": true
 }
