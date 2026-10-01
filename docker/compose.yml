@@ -2,7 +2,7 @@ name: dotfiles
 
 services:
   my_db:
-    image: postgres:16.8
+    image: postgres:17.11
     container_name: my_db
     restart: unless-stopped
     command: -c max_locks_per_transaction=256
