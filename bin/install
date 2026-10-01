@@ -37,7 +37,7 @@ echo
 export PATH="$HOME/.local/share/mise/shims:$HOME/.local/bin:$PATH"
 
 echo "== Installing tools through mise =="
-mise use --global node@lts npm:pnpm npm:yarn npm:tree-sitter-cli stylua shellcheck
+mise use --global node@lts npm:pnpm npm:yarn tree-sitter stylua shellcheck
 echo
 
 if ! command -v claude >/dev/null; then
