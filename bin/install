@@ -38,6 +38,7 @@ export PATH="$HOME/.local/share/mise/shims:$HOME/.local/bin:$PATH"
 
 echo "== Installing tools through mise =="
 mise use --global node@lts npm:pnpm npm:yarn tree-sitter stylua shellcheck
+mise settings add idiomatic_version_file_enable_tools ruby
 echo
 
 if ! command -v claude >/dev/null; then
