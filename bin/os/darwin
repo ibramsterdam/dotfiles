@@ -23,3 +23,7 @@ if [ ! -d /Applications/Alacritty.app ]; then
   rm -rf "$ALACRITTY_TMP"
   xattr -dr com.apple.quarantine /Applications/Alacritty.app
 fi
+
+defaults write -g ApplePressAndHoldEnabled -bool false
+defaults write -g KeyRepeat -int 2
+defaults write -g InitialKeyRepeat -int 12
