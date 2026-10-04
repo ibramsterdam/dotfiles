@@ -38,7 +38,7 @@ map(
 map("n", "<leader>s/", telescope("live_grep", { grep_open_files = true, prompt_title = "Live Grep in Open Files" }), {
   desc = "Search in open files",
 })
-map("n", "<leader>sn", telescope("find_files", { cwd = vim.fn.stdpath("config") }), { desc = "Search nvim files" })
+map("n", "<leader>sj", telescope("find_files", { cwd = vim.fn.stdpath("config") }), { desc = "Search nvim files" })
 map("n", "<leader>/", function()
   require("telescope.builtin").current_buffer_fuzzy_find(
     require("telescope.themes").get_dropdown({ winblend = 10, previewer = false })
