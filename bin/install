@@ -80,7 +80,14 @@ done
 for family_dir in "$DOTFILES_DIR"/fonts/*/; do
   [ -d "$family_dir" ] || continue
   for font_file in "$family_dir"*; do
-    link "$font_file" "$FONT_DIR/$(basename "$font_file")"
+    font_dst="$FONT_DIR/$(basename "$font_file")"
+    if [ -f "$font_dst" ] && [ ! -L "$font_dst" ] && cmp -s "$font_file" "$font_dst"; then
+      continue
+    fi
+    mkdir -p "$FONT_DIR"
+    rm -f "$font_dst"
+    cp "$font_file" "$font_dst"
+    echo "Installed font $font_dst"
   done
 done
 
