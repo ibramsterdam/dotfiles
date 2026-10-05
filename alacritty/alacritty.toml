@@ -49,7 +49,5 @@ bindings = [
 
 [terminal]
 osc52 = "CopyPaste"
+shell = { program = "zsh", args = ["-l", "-c", "exec tmux new-session -A -s main"] }
 
-[shell]
-program = "zsh"
-args = ["-l", "-c", "exec tmux new-session -A -s main"]
